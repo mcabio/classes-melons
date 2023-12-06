@@ -45,7 +45,12 @@ class InternationalMelonOrder:
 
         base_price = 5
         total = (1 + self.tax) * self.qty * base_price
-
+        # christmas_base = base_price * 1.5
+        if self.species == "Christmas melon":
+            total = (1 + self.tax) * self.qty * base_price * 1.5
+        if self.order_type == "international" and self.qty < 10: 
+            total += 3
+                    
         return total
 
     def mark_shipped(self):
@@ -57,3 +62,17 @@ class InternationalMelonOrder:
         """Return the country code."""
 
         return self.country_code
+    
+# class InternationalMelonOrder(AbstractMelonOrder):
+
+#     order_type = "international"
+#     tax = 0.17
+    
+#     # def__init__(self, species, qty,country_code):
+
+# class AbstractMelonOrder:
+
+#     order_type = None
+#     tax = 0
+
+
